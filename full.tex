@@ -1,0 +1,63 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{geometry}%
+\geometry{tmargin=1cm,lmargin=1cm}%
+\usepackage{tikz}%
+\usepackage{ragged2e}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+blub%
+\newpage%
+\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}%
+\hline%
+Fach: Mathematik&Test&\today\\%
+\hline%
+&&\\%
+Name: Peter&Punkte: &Note: \\%
+\hline%
+\end{tabular}%
+\newline%
+\begin{minipage}{0.5\linewidth}%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(14,8);%
+\end{minipage}%
+\thispagestyle{empty}%
+\newline%
+\newpage%
+\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}%
+\hline%
+Fach: Mathematik&Test&\today\\%
+\hline%
+&&\\%
+Name: Hannes&Punkte: &Note: \\%
+\hline%
+\end{tabular}%
+\newline%
+\begin{minipage}{0.5\linewidth}%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(14,8);%
+\end{minipage}%
+\thispagestyle{empty}%
+\newline%
+\newpage%
+\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}%
+\hline%
+Fach: Mathematik&Test&\today\\%
+\hline%
+&&\\%
+Name: Hugo&Punkte: &Note: \\%
+\hline%
+\end{tabular}%
+\newline%
+\begin{minipage}{0.5\linewidth}%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(14,8);%
+\end{minipage}%
+\thispagestyle{empty}%
+\newline%
+\newpage%
+\end{document}
