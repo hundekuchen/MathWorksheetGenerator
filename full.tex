@@ -4,8 +4,7 @@
 \usepackage{lmodern}%
 \usepackage{textcomp}%
 \usepackage{lastpage}%
-\usepackage{geometry}%
-\geometry{tmargin=1cm,lmargin=1cm}%
+\usepackage[tmargin=1cm,lmargin=1cm]{geometry}%
 \usepackage{tikz}%
 \usepackage{ragged2e}%
 %
@@ -13,8 +12,6 @@
 %
 \begin{document}%
 \normalsize%
-blub%
-\newpage%
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}%
 \hline%
 Fach: Mathematik&Test&\today\\%
@@ -23,12 +20,21 @@ Fach: Mathematik&Test&\today\\%
 Name: Peter&Punkte: &Note: \\%
 \hline%
 \end{tabular}%
+\begin{enumerate}%
+\item%
+$\left(-9\right) \left(-3 - 1\right)$%
 \newline%
 \begin{minipage}{0.5\linewidth}%
- \tikz \draw[step=0.5cm,gray](0,0)grid(14,8);%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(10, 4);%
 \end{minipage}%
-\thispagestyle{empty}%
+\item%
+$\frac{1}{2 x + 3 x}$%
 \newline%
+\begin{minipage}{0.5\linewidth}%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(10, 4);%
+\end{minipage}%
+\end{enumerate}%
+\thispagestyle{empty}%
 \newpage%
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}%
 \hline%
@@ -38,12 +44,21 @@ Fach: Mathematik&Test&\today\\%
 Name: Hannes&Punkte: &Note: \\%
 \hline%
 \end{tabular}%
+\begin{enumerate}%
+\item%
+$\left(-19\right) \left(-2 + 2\right)$%
 \newline%
 \begin{minipage}{0.5\linewidth}%
- \tikz \draw[step=0.5cm,gray](0,0)grid(14,8);%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(10, 4);%
 \end{minipage}%
-\thispagestyle{empty}%
+\item%
+$\frac{1}{2 x + 3 x}$%
 \newline%
+\begin{minipage}{0.5\linewidth}%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(10, 4);%
+\end{minipage}%
+\end{enumerate}%
+\thispagestyle{empty}%
 \newpage%
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}%
 \hline%
@@ -53,11 +68,20 @@ Fach: Mathematik&Test&\today\\%
 Name: Hugo&Punkte: &Note: \\%
 \hline%
 \end{tabular}%
+\begin{enumerate}%
+\item%
+$7 \left(5 + 6\right)$%
 \newline%
 \begin{minipage}{0.5\linewidth}%
- \tikz \draw[step=0.5cm,gray](0,0)grid(14,8);%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(10, 4);%
 \end{minipage}%
-\thispagestyle{empty}%
+\item%
+$\frac{1}{2 x + 3 x}$%
 \newline%
+\begin{minipage}{0.5\linewidth}%
+ \tikz \draw[step=0.5cm,gray](0,0)grid(10, 4);%
+\end{minipage}%
+\end{enumerate}%
+\thispagestyle{empty}%
 \newpage%
 \end{document}
