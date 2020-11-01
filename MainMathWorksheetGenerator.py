@@ -9,16 +9,32 @@ if __name__ == '__main__':
     sqlh = SQLiteHandler('mathWorksheet.db')
     assignments = sqlh.select_assignments()
     #print(assignments)
-    #TODO import assignments from sqlite database
-    for a in assignments:
-        print('ass = ', a)
-        ah.add_assignment(a)
+    #for a in assignments:
+    #    print('ass = ', a)
+    #    ah.add_assignment(a)
+    #ah.add_assignment(assignments[0])
+    
     
     #TODO import student names database via ERM
-    students = sqlh.select_students_from_class('blub')
+    class_id = '2'
+    students = sqlh.select_students_from_class(class_id)
+    print(students)
     for student in students:
+        ah.clear()
+        assignments = sqlh.select_assignments_individual(student[0])
+        for a in assignments:                
+            ah.add_assignment(a)
         lh.generate_test_header(student)
         lh.add_test(ah)
+        print('student = ', student[0], '   name ', student[2])
         lh.add_solution(ah)
+   
+   #=================TESTIN=============
+   #================TESTING DONE==========
+   
+   
     lh.generate_pdf('blub')
+    
+    
+    
             

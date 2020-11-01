@@ -19,24 +19,36 @@ class SQLiteHandler:
             print(e)
 
         return conn
-    
+   
+   #TODO lots of copy paste code below -- :(
+   
     def select_assignments(self):
         cur = self.conn.cursor()
-        cur.execute("SELECT assignmentPyString FROM assignment")
+        cur.execute("SELECT * FROM assignment")
         assignments_raw = cur.fetchall()
-        assignments_usable = []
-        for a in assignments_raw:
-            assignments_usable.append(a[0])
-        return assignments_usable
+        print(assignments_raw)
+        return assignments_raw
     
-    def select_students_from_class(self, my_class):
+    def select_students_from_class(self, class_name):
         cur = self.conn.cursor()
-        cur.execute("SELECT StudentFirstName, StudentLastName FROM students")
+        cur.execute("SELECT * FROM students WHERE IDclass_f = ?", (class_name,))
+        students_raw = cur.fetchall()
+        students_usable = []
+        return students_raw
+    
+    def select_all_assignments(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM assignments")
         assignments_raw = cur.fetchall()
         assignments_usable = []
-        for a in assignments_raw:
-            assignments_usable.append(a[0]+ ', ' + a[1])
-        return assignments_usable
+        return assignments_raw
+    
+    def select_assignments_individual(self, student):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM assignment a LEFT JOIN studentAssignment sa ON sa.IDassignment_f=a.IDassignment WHERE sa.IDstudent_f = ? ", (student,))
+        assignments_raw = cur.fetchall()
+        assignments_usable = []
+        return assignments_raw
             
         
         

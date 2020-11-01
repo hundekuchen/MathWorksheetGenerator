@@ -13,19 +13,22 @@ class LatexHandler:
         #Ziffer package for german , Notation( 1,2 vs 1, 3  )
         self.doc.packages.append(Package('ziffer'))
         self.doc.append(NoEscape(r'\pagestyle{empty}'))
+        #self.doc.append('blub')
         
         
     def draw_grid(self,x,y):
         with self.doc.create(MiniPage(width=r"0.5\linewidth")):
             self.doc.append(NoEscape(r' \tikz \draw[step=0.5cm,gray](0,0)grid(' + str(x) + ', ' + str(y) + ');'))
     
+    #student: 0 - id, 1 - first, 2 - last,  3 - class 
     def generate_test_header(self, student):
         with self.doc.create(Tabular('|p{5cm}|p{5cm}|p{5cm}|')) as table:
             table.add_hline()
             table.add_row('Fach: Mathematik','Test', NoEscape(r'\today'))
             table.add_hline()
             table.add_empty_row()
-            table.add_row(('Name: '+ student ,'Punkte: ' ,'Note: '))
+            student_string = str(student[1])+ ' ' + str(student[2])
+            table.add_row(('Name: '+ student_string ,'Punkte: ' ,'Note: '))
             table.add_hline()
               
     def generate_pdf(self,pdf_name):
@@ -36,8 +39,8 @@ class LatexHandler:
             for a in ah.assignments:
                 enum.add_item(NoEscape('$'+a.latex_question + '$'))
                 self.doc.append(NoEscape(r'\newline'))      
-                self.draw_grid(15,4)
-        self.doc.append(NoEscape(r'\newpage'))
+                #self.draw_grid(15,4)
+        #self.doc.append(NoEscape(r'\newpage'))
         
     def add_solution(self, ah):
         #  use database approach here.
@@ -45,6 +48,6 @@ class LatexHandler:
             with self.doc.create(Enumerate()) as enum:
                 for a in ah.assignments:
                     enum.add_item(NoEscape('$'+a.latex_solution + '$'))
-                    self.doc.append(NoEscape(r'\newline'))      
+                    #self.doc.append(NoEscape(r'\newline'))      
                     #self.draw_grid(10,4)
             self.doc.append(NoEscape(r'\newpage'))
