@@ -29,16 +29,16 @@ class SQLiteHandler:
         print(assignments_raw)
         return assignments_raw
     
-    def select_students_from_class(self, class_name):
+    def select_students_from_class(self, class_id):
         cur = self.conn.cursor()
-        cur.execute("SELECT * FROM students WHERE IDclass_f = ?", (class_name,))
+        cur.execute("SELECT * FROM students WHERE IDclass_f = ?", (class_id,))
         students_raw = cur.fetchall()
         students_usable = []
         return students_raw
     
-    def select_all_assignments(self):
+    def select_assignments_topic(self, topic_id):
         cur = self.conn.cursor()
-        cur.execute("SELECT * FROM assignments")
+        cur.execute("SELECT * FROM assignment WHERE IDtopic_f = ?", (topic_id,))
         assignments_raw = cur.fetchall()
         assignments_usable = []
         return assignments_raw

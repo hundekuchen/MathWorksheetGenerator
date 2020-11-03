@@ -2,7 +2,21 @@ import random
 
 class RandomHandler:
     def __init__(self):
-        self.a =0
+        self.rs =''
+        self.ri =0
+    
+    def fixrand(self, a,b):
+        self.ri= random.randint(a,b)
+        self.rs=str(self.ri)
+        return ''
+    
+    def multrand(self, a,b):
+        x=random.randint(a,b)
+        return str(x*self.ri)
+    
+    def recallr(self, a,b):
+        return self.rs
+        
     
     #a,b left in bc the parser needs it.
     def sign(self,a,b):
@@ -37,7 +51,7 @@ class RandomHandler:
         else:
             return '{} + {}'.format(n1, n2)
 
-    dico = {'SIGN' : sign, 'NUM': num, 'SIGNNUM': sign_num, 'ADD': add, 'SIGN_ADD': sign_add}
+    dico = {'FIXRAND': fixrand, 'MULTRAND' : multrand, 'RECALLR' : recallr, 'SIGN' : sign, 'NUM': num, 'SIGNNUM': sign_num, 'ADD': add, 'SIGN_ADD': sign_add}
 
     def fill_in(self,txt):
         argv = txt.strip().split()

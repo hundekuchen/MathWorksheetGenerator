@@ -12,6 +12,8 @@ class LatexHandler:
         self.doc.packages.append(Package('tikz'))
         #Ziffer package for german , Notation( 1,2 vs 1, 3  )
         self.doc.packages.append(Package('ziffer'))
+        self.doc.packages.append(Package('tasks'))
+        self.doc.packages.append(Package('multicol'))
         self.doc.append(NoEscape(r'\pagestyle{empty}'))
         #self.doc.append('blub')
         
@@ -35,12 +37,23 @@ class LatexHandler:
         self.doc.generate_pdf(pdf_name, clean_tex=False) 
 
     def add_test(self, ah):
-        with self.doc.create(Enumerate()) as enum:
-            for a in ah.assignments:
-                enum.add_item(NoEscape('$'+a.latex_question + '$'))
-                self.doc.append(NoEscape(r'\newline'))      
-                #self.draw_grid(15,4)
+        self.doc.append(NoEscape(r'\begin{multicols}{4}\begin{enumerate}'))
+        for a in ah.assignments:
+            self.doc.append(NoEscape(r'\item' + ' $'+a.latex_question + '$'))
+        self.doc.append(NoEscape(r'\end{enumerate}'))
+        self.doc.append(NoEscape(r'\end{multicols}'))
+
+    def newpage(self):
+        self.doc.append(NoEscape(r'\newpage'))
+        
+        
+        #with self.doc.create(Enumerate()) as enum:
+        #    for a in ah.assignments:
+        #        enum.add_item(NoEscape('$'+a.latex_question + '$'))
+        #        self.doc.append(NoEscape(r'\newline'))      
+        #        #self.draw_grid(15,4)
         #self.doc.append(NoEscape(r'\newpage'))
+          
         
     def add_solution(self, ah):
         #  use database approach here.
