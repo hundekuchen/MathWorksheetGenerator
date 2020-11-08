@@ -29,7 +29,7 @@ class LatexHandler:
             table.add_row('Fach: Mathematik','Test', NoEscape(r'\today'))
             table.add_hline()
             table.add_empty_row()
-            student_string = str(student[1])+ ' ' + str(student[2])
+            student_string = str(student[0]) + '  ' + str(student[1])+ ' ' + str(student[2])
             table.add_row(('Name: '+ student_string ,'Punkte: ' ,'Note: '))
             table.add_hline()
               
@@ -37,7 +37,7 @@ class LatexHandler:
         self.doc.generate_pdf(pdf_name, clean_tex=False) 
 
     def add_test(self, ah):
-        self.doc.append(NoEscape(r'\begin{multicols}{4}\begin{enumerate}'))
+        self.doc.append(NoEscape(r'\begin{multicols}{3}\begin{enumerate}'))
         for a in ah.assignments:
             self.doc.append(NoEscape(r'\item' + ' $'+a.latex_question + '$'))
         self.doc.append(NoEscape(r'\end{enumerate}'))

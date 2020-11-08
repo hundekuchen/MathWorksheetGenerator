@@ -1,6 +1,7 @@
 from LatexHandler import LatexHandler
 from AssignmentHandler import AssignmentHandler
 from SQLiteHandler import SQLiteHandler
+from fractions import Fraction
 
 def select_whole_class(class_id, assignment_topic):
     #================select for the whole class.
@@ -26,8 +27,8 @@ def select_individual(class_id):
     for student in students:
         ah.clear()
         assignments = sqlh.select_assignments_individual(student[0])
-        for x in range(4):
-            for a in assignments:                
+        for a in assignments:
+            for x in range(int(a[8])):#9
                 ah.add_assignment(a)
         if(len(ah.assignments)>0):
             lh.generate_test_header(student)
@@ -47,11 +48,11 @@ if __name__ == '__main__':
     #class_id
     select_individual('2')
     #class_id, topic_id
-    #select_whole_class('2','2')
+    #select_whole_class('1','1')
    #================TESTING DONE==========
    
    
-    lh.generate_pdf('20201103VAB1')
+    lh.generate_pdf('20201109VAB1')
     
     
     

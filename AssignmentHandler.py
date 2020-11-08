@@ -30,8 +30,8 @@ class assignment:
         sympyq_string =sympify(sympyq_string, evaluate = False)
         print('sympy string ', sympyq_string)
         self.sympy_question = sympyq_string
+        
         #latex handling
-
         split_assign = parsed_string.split(':')
         print('split assign = ', split_assign)
         latex_string = ''
