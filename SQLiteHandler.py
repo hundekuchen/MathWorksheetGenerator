@@ -36,6 +36,12 @@ class SQLiteHandler:
         students_usable = []
         return students_raw
     
+    def select_all_classes(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM class", )
+        classes_raw = cur.fetchall()
+        return classes_raw
+    
     def select_assignments_topic(self, topic_id):
         cur = self.conn.cursor()
         cur.execute("SELECT * FROM assignment WHERE IDtopic_f = ?", (topic_id,))
@@ -45,6 +51,7 @@ class SQLiteHandler:
     
     def select_assignments_individual(self, student):
         cur = self.conn.cursor()
+        print(student)
         cur.execute("SELECT * FROM assignment a LEFT JOIN studentAssignment sa ON sa.IDassignment_f=a.IDassignment WHERE sa.IDstudent_f = ? ", (student,))
         assignments_raw = cur.fetchall()
         #print("ass raw: ", assignments_raw)
