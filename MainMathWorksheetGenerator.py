@@ -7,11 +7,11 @@ def select_whole_class(class_id, assignment_topic):
     #================select for the whole class.
     students = sqlh.select_students_from_class(class_id)
     assignments = sqlh.select_assignments_topic(assignment_topic)
-    print(assignments)
+    #print(assignments)
 
     for student in students:
         for a in assignments:
-            print('ass = ', a)
+            #print('ass = ', a)
             ah.add_assignment(a)
         lh.generate_test_header(student)
         lh.add_test(ah)
@@ -46,14 +46,8 @@ if __name__ == '__main__':
     ah = AssignmentHandler()
     sqlh = SQLiteHandler('mathWorksheet.db')
     #class_id
-    select_individual('2')
+    #select_individual('2')
     #class_id, topic_id
-    #select_whole_class('1','1')
+    select_whole_class('1','1')
    #================TESTING DONE==========
-   
-   
-    lh.generate_pdf('20201109VAB1')
-    
-    
-    
-            
+    lh.generate_pdf('20201112BFP1')

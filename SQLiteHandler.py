@@ -47,7 +47,7 @@ class SQLiteHandler:
         cur = self.conn.cursor()
         cur.execute("SELECT * FROM assignment a LEFT JOIN studentAssignment sa ON sa.IDassignment_f=a.IDassignment WHERE sa.IDstudent_f = ? ", (student,))
         assignments_raw = cur.fetchall()
-        print("ass raw: ", assignments_raw)
+        #print("ass raw: ", assignments_raw)
         return assignments_raw
             
         

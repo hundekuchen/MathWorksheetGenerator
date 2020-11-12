@@ -28,34 +28,34 @@ class assignment:
         parsed_string = rh.parse(assign_input[3])
         sympyq_string =parsed_string.replace(':', '/')
         sympyq_string =sympify(sympyq_string, evaluate = False)
-        print('sympy string ', sympyq_string)
+        #print('sympy string ', sympyq_string)
         self.sympy_question = sympyq_string
         
         #latex handling
         split_assign = parsed_string.split(':')
-        print('split assign = ', split_assign)
+        #print('split assign = ', split_assign)
         latex_string = ''
         #todo - make this work for multiple ":"s.
         if(len(split_assign)==2):
             latex_string= latex(sympify(split_assign[0],evaluate = False)) + ':' + latex(sympify(split_assign[1], evaluate = False))
         else:
             latex_string = latex(sympify(split_assign[0], evaluate = False))
-        print('latex_string = ', latex_string)
+        #print('latex_string = ', latex_string)
         latex_string = latex_string.replace('.',',')
         self.latex_question = latex_string
 
     def to_latex(self, assign_input):
         parsed_string=self.sympy_question
-        print('parsed string = ', parsed_string)
+        #print('parsed string = ', parsed_string)
         split_assign = parsed_string.split(':')
-        print('split assign = ', split_assign)
+        #print('split assign = ', split_assign)
         latex_string = ''
         #todo - make this work for multiple ":"s.
         if(len(split_assign)==2):
             latex_string= latex(sympify(split_assign[0], evaluate = False)) + ':' + latex(sympify(split_assign[1], evaluate = False))
         else:
             latex_string = latex(sympify(split_assign[0], evaluate = False))
-        print('latex_string = ', latex_string)
+        #print('latex_string = ', latex_string)
         return latex_string
                 
     #assign_input 1 - simplify, 2 - evaluate
