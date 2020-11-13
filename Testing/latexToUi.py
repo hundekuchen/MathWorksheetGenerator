@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/---bin/python3
 
 from tkinter import *
 import sympy as sp
@@ -10,20 +10,21 @@ class Root():
         #Define the main window and the relevant widgets
         self.master = master
         master.geometry("800x300")
-        self.strvar = StringVar()
         self.label = Label(master)
-        self.entry = Entry(master, textvariable = self.strvar, width = 80)
         self.button = Button(text = "LaTeX!", command = self.on_latex)
-        #The Euler product formula
-        self.strvar.set("\prod_{p\,\mathrm{prime}}\\frac1{1-p^{-s}} = \sum_{n=1}^\infty \\frac1{n^s}")
-
-        #Pack everything
-        self.entry.pack()
-        self.button.pack()
-        self.label.pack()
-    
-    def on_latex(self):
-        expr = "$\displaystyle " + self.strvar.get() + "$"
+        self.listbox = Listbox(master)
+        self.listbox.insert(1,"3+\pi")
+        self.listbox.insert(2,"4-\int")
+        self.listbox.bind('<Double-1>', self.on_latex)       
+        #grid everything
+        self.label.grid(row=2, column=0)
+        self.listbox.grid(row=3,column=0)
+        
+    def on_latex(self,event):
+        cs=self.listbox.curselection()
+        latex_string = self.listbox.get(cs)
+        print(latex_string)
+        expr = "$\displaystyle " + latex_string + "$"
 
         #This creates a ByteIO stream and saves there the output of sympy.preview
         f = BytesIO()
@@ -36,7 +37,7 @@ class Root():
         img = Image.open(f)
         #See note at the bottom
         img.load(scale = 10)
-        img = img.resize((int(img.size[0]/2),int(img.size[1]/2)),Image.BILINEAR)
+        img = img.resize((int(img.size[0]/4),int(img.size[1]/4)),Image.BILINEAR)
         photo = ImageTk.PhotoImage(img)
         self.label.config(image = photo)
         self.label.image = photo
