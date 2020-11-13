@@ -1,41 +1,48 @@
-import tkinter as tk
-from tkinter import ttk
+#!/usr/---bin/python3
+
+from tkinter import *
 import sympy as sp
-from io import BytesIO
 from PIL import Image, ImageTk
+from io import BytesIO
 
-def integrate():
-    x=sp.Symbol('x')
-    integral=sp.integrate(eq.get(),x)
-    var.set('Integration result= \sum'+ 'C\u2081')
-    obj = BytesIO()
-    sp.preview(integral, viewer='BytesIO', output='png', outputbuffer=obj)
-    obj.seek(0)
-    img_lbl.img = ImageTk.PhotoImage(Image.open(obj))
-    img_lbl.config(image=img_lbl.img)
+class Root():
+    def __init__(self, master):
+        #Define the main window and the relevant widgets
+        self.master = master
+        master.geometry("800x300")
+        self.label = Label(master)
+        self.button = Button(text = "LaTeX!", command = self.on_latex)
+        self.listbox = Listbox(master)
+        self.listbox.insert(1,"3+\pi")
+        self.listbox.insert(2,"4-\int")
+        self.listbox.bind('<Double-1>', self.on_latex)       
+        #grid everything
+        self.label.grid(row=2, column=0)
+        self.listbox.grid(row=3,column=0)
+        
+    def on_latex(self,event):
+        cs=self.listbox.curselection()
+        latex_string = self.listbox.get(cs)
+        print(latex_string)
+        expr = "$\displaystyle " + latex_string + "$"
 
-win=tk.Tk()   # defines window
-
-win2=ttk.Labelframe(win,text='')
-win2.grid(column=0, row=0)
-
-# Creates a static txt label
-eq_static=ttk.Label(win2,text='Introduce the equation f(x)',font=("Times New Roman", 14))
-eq_static.grid(column=0,row=0,padx=5,pady=5)
-
-eq=tk.StringVar(value='4*x')
-eq_Entered=ttk.Entry(win2,width=40, textvariable=eq)
-eq_Entered.grid(column=1,row=0,padx=5,pady=5)
-# Creates a static txt label
-var=tk.StringVar()
-eq_static=ttk.Label(win2,textvariable=var,font=("Times New Roman", 14))
-var.set('Result')
-eq_static.grid(column=0,row=3,padx=5,pady=5)
-# Calculate button
-
-img_lbl = tk.Label(win2)
-img_lbl.grid()
-
-action=ttk.Button(win2,text='Integrate',command=integrate)
-action.grid(column=2,row=0,padx=5,pady=5)
-win2.mainloop()
+        #This creates a ByteIO stream and saves there the output of sympy.preview
+        f = BytesIO()
+        the_color = "{" + self.master.cget('bg')[1:].upper()+"}"
+        sp.preview(expr, euler = False, preamble = r"\documentclass{standalone}"
+                   r"\begin{document}",
+                   viewer = "BytesIO", output = "ps", outputbuffer=f)
+        f.seek(0)
+        #Open the image as if it were a file. This works only for .ps!
+        img = Image.open(f)
+        #See note at the bottom
+        img.load(scale = 10)
+        img = img.resize((int(img.size[0]/4),int(img.size[1]/4)),Image.BILINEAR)
+        photo = ImageTk.PhotoImage(img)
+        self.label.config(image = photo)
+        self.label.image = photo
+        f.close()
+        
+master = Tk()
+root   = Root(master)
+master.mainloop()
