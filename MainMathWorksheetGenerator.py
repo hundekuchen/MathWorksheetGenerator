@@ -36,8 +36,8 @@ def select_individual(class_id):
             print('student = ', student[0], '   name ', student[2])
             lh.draw_grid(17,19)
             lh.newpage()
-            lh.generate_test_header(student)
-            lh.add_solution(ah)
+            #lh.generate_test_header(student)
+            #lh.add_solution(ah)
         ah.clear()
 
 
@@ -46,8 +46,8 @@ if __name__ == '__main__':
     ah = AssignmentHandler()
     sqlh = SQLiteHandler('mathWorksheet.db')
     #class_id
-    #select_individual('2')
+    select_individual('2')
     #class_id, topic_id
-    select_whole_class('1','1')
+    #select_whole_class('1','1')
    #================TESTING DONE==========
-    lh.generate_pdf('20201112BFP1')
+    lh.generate_pdf('20201116VAB1')

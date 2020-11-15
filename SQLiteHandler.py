@@ -56,6 +56,12 @@ class SQLiteHandler:
         assignments_raw = cur.fetchall()
         #print("ass raw: ", assignments_raw)
         return assignments_raw
+    
+    def add_assignment_individual(self, student_id, assignment_id):
+        cur = self.conn.cursor()
+        cur.execute("INSERT INTO studentAssignment (IDstudent_f, IDassignment_f) VALUES (?,?)", (student_id,assignment_id))
+        self.conn.commit()
+        #print("ass raw: ", assignments_raw)
             
         
         
