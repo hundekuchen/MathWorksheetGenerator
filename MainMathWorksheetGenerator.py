@@ -36,8 +36,8 @@ def select_individual(class_id):
             print('student = ', student[0], '   name ', student[2])
             lh.draw_grid(17,19)
             lh.newpage()
-            #lh.generate_test_header(student)
-            #lh.add_solution(ah)
+            lh.generate_test_header(student)
+            lh.add_solution(ah)
         ah.clear()
 
 
